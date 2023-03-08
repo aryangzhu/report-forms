@@ -73,6 +73,15 @@ ffbase:
     endpoint: http://192.168.0.21:9000
     callback: http://192.168.0.33:8088
     path: /data/template
+  swagger:
+    enabled: true
+  auth:
+    token:
+      enableSecurity: false
+      authServerUrl: http://192.168.0.22:8083/FFLawEnforcementSystem
+      redirectUri: http://192.168.0.22:8083/fivefu_LawEnforcemen/web/auth.html
+      clientId: ffzX824G9G
+      clientSecret: rOubO1(6DIiGhl
 knife4j:
   basic:
     username: fivefu

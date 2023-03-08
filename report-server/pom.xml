@@ -78,7 +78,7 @@
         <artifactId>fivefu-boot-module-dictionary</artifactId>
     </dependency>
 
-        <!-- 单点登陆-->
+        <!-- 单点登陆客户端-->
         <dependency>
             <groupId>com.fivefu.core</groupId>
             <artifactId>fivefu-boot-module-auth-token-client</artifactId>
