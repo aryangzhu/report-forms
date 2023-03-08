@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Collections;
 
 @Configuration
-@MapperScan("com.fivefu.cor.report.mapper")
+@MapperScan("com.fivefu.core.report.mapper")
 public class MybatisPlusConfig {
 
     @Bean

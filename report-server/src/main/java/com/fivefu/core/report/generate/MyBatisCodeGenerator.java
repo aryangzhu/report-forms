@@ -19,6 +19,7 @@ public class MyBatisCodeGenerator {
      * </p>
      */
     public static String scanner(String tip) {
+        System.out.println(tip);
         Scanner scanner = new Scanner(System.in);
         StringBuilder help = new StringBuilder();
         help.append("请输入" + tip + "：");
@@ -66,7 +67,7 @@ public class MyBatisCodeGenerator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        strategy.setInclude(scanner("表名"));//
+        strategy.setInclude(scanner("表名:"));//
         strategy.setRestControllerStyle(true);
         //strategy.setSuperControllerClass("com.fivefu.base.web.controller.BaseController");
         strategy.setControllerMappingHyphenStyle(true);

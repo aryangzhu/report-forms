@@ -91,7 +91,7 @@ knife4j:
   enable: true #是否开启swagger
 #全局逻辑删除字段值
 mybatis-plus:
-  mapper-locations: classpath*:mybatis/master/*Mapper.xml
+  mapper-locations: classpath*:mapper/*Mapper.xml
   global-config:
     db-config:
       logic-delete-field: is_delete
