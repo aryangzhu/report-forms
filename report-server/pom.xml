@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>fivefu-report-forms</artifactId>
+        <groupId>com.fivefu.core</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>report-server</artifactId>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid-spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.fivefu.base</groupId>
+        <artifactId>fivefu-boot-base-web-dependencies</artifactId>
+    </dependency>
+    <!-- mysql -->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+    <!-- mybatis-plus -->
+    <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter</artifactId>
+    </dependency>
+    <!--多数据源-->
+    <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+    </dependency>
+    <!--fastjson-->
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+    </dependency>
+    <!--自动生成代码-->
+    <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-generator</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.velocity</groupId>
+        <artifactId>velocity-engine-core</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-io</artifactId>
+    </dependency>
+    <!-- 文件服务器-->
+    <dependency>
+        <artifactId>fivefu-boot-base-fileupload-minio-starter</artifactId>
+        <groupId>com.fivefu.base</groupId>
+    </dependency>
+    <dependency>
+        <artifactId>fivefu-boot-base-common-utils</artifactId>
+        <groupId>com.fivefu.base</groupId>
+    </dependency>
+    <dependency>
+        <groupId>com.fivefu.base</groupId>
+        <artifactId>fivefu-boot-base-web-swagger-starter</artifactId>
+    </dependency>
+    <!-- dict 数据字典 -->
+    <dependency>
+        <groupId>com.fivefu.base.module</groupId>
+        <artifactId>fivefu-boot-module-dictionary</artifactId>
+    </dependency>
+    </dependencies>
+
+</project>
