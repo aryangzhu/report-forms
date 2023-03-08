@@ -84,6 +84,20 @@
             <artifactId>fivefu-boot-module-auth-token-client</artifactId>
             <version>1.0.0-RELEASE</version>
         </dependency>
+
+
+        <!--mybatis plus 自动生成代码-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>3.3.1</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>mybatis-plus-extension</artifactId>
+                    <groupId>com.baomidou</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
 
