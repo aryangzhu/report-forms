@@ -77,6 +77,14 @@
         <groupId>com.fivefu.base.module</groupId>
         <artifactId>fivefu-boot-module-dictionary</artifactId>
     </dependency>
+
+        <!-- 单点登陆-->
+        <dependency>
+            <groupId>com.fivefu.core</groupId>
+            <artifactId>fivefu-boot-module-auth-token-client</artifactId>
+            <version>1.0.0-RELEASE</version>
+        </dependency>
     </dependencies>
+
 
 </project>
