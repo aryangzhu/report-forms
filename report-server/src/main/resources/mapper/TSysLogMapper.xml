@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fivefu.core.report.mapper.TSysLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fivefu.core.report.entity.TSysLog">
+        <id column="id" property="id" />
+        <result column="created_by" property="createdBy" />
+        <result column="created_time" property="createdTime" />
+        <result column="updated_by" property="updatedBy" />
+        <result column="updated_time" property="updatedTime" />
+        <result column="is_delete" property="isDelete" />
+        <result column="invoke_id" property="invokeId" />
+        <result column="invoke_name" property="invokeName" />
+        <result column="business" property="business" />
+    </resultMap>
+
+</mapper>
