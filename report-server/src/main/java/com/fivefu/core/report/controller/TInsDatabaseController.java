@@ -8,11 +8,7 @@ import com.fivefu.core.report.entity.request.ReqReportDataSource;
 import com.fivefu.core.report.service.TInsDatabaseService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -41,5 +37,18 @@ public class TInsDatabaseController {
             return ResultInfo.renderError("新增数据源异常");
         }
     }
+
+    @ApiOperation(value = "删除数据源",httpMethod = "GET",response = ResultInfo.class)
+    @GetMapping("/remove")
+    @LogOption(title = "删除数据源",businessType = BusinessType.INSERT)
+    public ResultInfo remove(Long id){
+        try {
+            tInsDatabaseService.removeById(id);
+            return ResultInfo.renderSuccess();
+        }catch (Exception e){
+            return ResultInfo.renderError("新增数据源异常");
+        }
+    }
+
 }
 
