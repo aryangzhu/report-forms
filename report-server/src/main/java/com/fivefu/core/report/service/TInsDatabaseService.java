@@ -2,6 +2,7 @@ package com.fivefu.core.report.service;
 
 import com.fivefu.core.report.entity.TInsDatabase;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.fivefu.core.report.entity.request.ReqReportDataSource;
 
 /**
  * <p>
@@ -13,4 +14,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface TInsDatabaseService extends IService<TInsDatabase> {
 
+
+    /**
+     * 新增数据源
+     * @param reqDatasources
+     */
+    void add(ReqReportDataSource reqDatasources);
 }

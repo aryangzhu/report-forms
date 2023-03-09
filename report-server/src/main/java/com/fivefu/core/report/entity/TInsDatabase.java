@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author liulei
- * @since 2023-03-08
+ * @since 2023-03-09
  */
 @TableName("t_ins_database")
 public class TInsDatabase implements Serializable {
@@ -109,6 +109,12 @@ public class TInsDatabase implements Serializable {
      */
     @TableField("method_body")
     private String methodBody;
+
+    /**
+     * 数据库类型,1mysql
+     */
+    @TableField("database_type")
+    private Long databaseType;
 
 
     public Long getId() {
@@ -231,6 +237,14 @@ public class TInsDatabase implements Serializable {
         this.methodBody = methodBody;
     }
 
+    public Long getDatabaseType() {
+        return databaseType;
+    }
+
+    public void setDatabaseType(Long databaseType) {
+        this.databaseType = databaseType;
+    }
+
     @Override
     public String toString() {
         return "TInsDatabase{" +
@@ -249,6 +263,7 @@ public class TInsDatabase implements Serializable {
         ", methodType=" + methodType +
         ", methodHeader=" + methodHeader +
         ", methodBody=" + methodBody +
+        ", databaseType=" + databaseType +
         "}";
     }
 }

@@ -2,6 +2,7 @@ package com.fivefu.core.report.mapper;
 
 import com.fivefu.core.report.entity.TInsDatabase;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
