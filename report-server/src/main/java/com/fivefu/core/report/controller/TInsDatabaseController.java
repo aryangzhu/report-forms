@@ -3,9 +3,11 @@ package com.fivefu.core.report.controller;
 
 import com.fivefu.base.web.vo.ResultInfo;
 import com.fivefu.core.report.anno.LogOption;
+import com.fivefu.core.report.common.BaseController;
 import com.fivefu.core.report.constant.BusinessType;
 import com.fivefu.core.report.entity.request.ReqReportDataSource;
 import com.fivefu.core.report.service.TInsDatabaseService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +20,10 @@ import org.springframework.web.bind.annotation.*;
  * @author liulei
  * @since 2023-03-09
  */
+@Api(tags="数据源")
 @RestController
 @RequestMapping("/t-ins-database")
-public class TInsDatabaseController {
+public class TInsDatabaseController extends BaseController {
 
 
     @Autowired

@@ -4,12 +4,10 @@ package com.fivefu.core.report.aspect;
 import com.fivefu.core.module.auth.utils.SecurityUtil;
 import com.fivefu.core.module.auth.vo.SysAuthUser;
 import com.fivefu.core.report.anno.LogOption;
-import com.fivefu.core.report.constant.BusinessType;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,6 +67,7 @@ public class LogAspect {
             LogOption logOption = method.getAnnotation(LogOption.class);
             //设置注解上的参数
             int ordinal = logOption.businessType().ordinal();
+
             String title = logOption.title();
             System.out.println(ordinal+title);
             //使用消息队列
