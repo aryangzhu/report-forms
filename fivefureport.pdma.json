@@ -4,7 +4,7 @@
   "avatar": "",
   "version": "4.1.1",
   "createdTime": "2023-3-8 14:20:46",
-  "updatedTime": "2023-3-9 14:44:21",
+  "updatedTime": "2023-3-16 11:42:51",
   "dbConns": [],
   "profile": {
     "default": {
@@ -1333,6 +1333,23 @@
           "extProps": {},
           "domain": "046A6641-8EB3-4E8F-8C11-E46B2B180E48",
           "id": "910D0F18-74A3-4483-BA9D-59135CD5CDBA"
+        },
+        {
+          "defKey": "pid",
+          "defName": "父id",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "FEB46343-972D-4E6C-BD63-B0D31F6D3564",
+          "id": "F9C4C530-4162-4808-849C-0F8020D99E74"
         }
       ],
       "correlations": [],
