@@ -4,7 +4,7 @@
   "avatar": "",
   "version": "4.1.1",
   "createdTime": "2023-3-8 14:20:46",
-  "updatedTime": "2023-3-20 10:38:11",
+  "updatedTime": "2023-3-20 20:50:31",
   "dbConns": [],
   "profile": {
     "default": {
@@ -1621,6 +1621,23 @@
           "extProps": {},
           "domain": "FEB46343-972D-4E6C-BD63-B0D31F6D3564",
           "id": "2FD928CB-5206-4243-A862-914CF61BA10D"
+        },
+        {
+          "defKey": "pid",
+          "defName": "主报表id",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "FEB46343-972D-4E6C-BD63-B0D31F6D3564",
+          "id": "5E2C1B18-E913-4383-8CBA-ACA098E549CB"
         }
       ],
       "correlations": [],
