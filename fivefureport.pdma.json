@@ -4,7 +4,7 @@
   "avatar": "",
   "version": "4.1.1",
   "createdTime": "2023-3-8 14:20:46",
-  "updatedTime": "2023-3-16 11:42:51",
+  "updatedTime": "2023-3-20 10:38:11",
   "dbConns": [],
   "profile": {
     "default": {
@@ -1604,6 +1604,23 @@
           "extProps": {},
           "domain": "9087D815-3B32-4AF0-A034-731614DE7B67",
           "id": "0500BCE4-209D-46CD-9F0E-752E7085992E"
+        },
+        {
+          "defKey": "business_id",
+          "defName": "业务id",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "FEB46343-972D-4E6C-BD63-B0D31F6D3564",
+          "id": "2FD928CB-5206-4243-A862-914CF61BA10D"
         }
       ],
       "correlations": [],
