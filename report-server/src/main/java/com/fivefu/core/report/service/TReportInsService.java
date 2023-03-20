@@ -1,5 +1,6 @@
 package com.fivefu.core.report.service;
 
+import com.fivefu.base.web.vo.ResultInfo;
 import com.fivefu.core.report.entity.TReportIns;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface TReportInsService extends IService<TReportIns> {
 
+    ResultInfo saveReport(TReportIns tReportIns);
 }

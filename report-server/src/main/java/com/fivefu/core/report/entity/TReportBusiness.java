@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -13,7 +14,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author liulei
- * @since 2023-03-09
+ * @since 2023-03-16
  */
 @TableName("t_report_business")
 public class TReportBusiness implements Serializable {
@@ -61,6 +62,15 @@ public class TReportBusiness implements Serializable {
      */
     @TableField("business_name")
     private String businessName;
+
+    /**
+     * 父id
+     */
+    @TableField("pid")
+    private Long pid;
+
+    private List<TReportBusiness> children;
+
 
 
     public Long getId() {
@@ -117,6 +127,22 @@ public class TReportBusiness implements Serializable {
 
     public void setBusinessName(String businessName) {
         this.businessName = businessName;
+    }
+
+    public Long getPid() {
+        return pid;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
+
+    public List<TReportBusiness> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<TReportBusiness> children) {
+        this.children = children;
     }
 
     @Override

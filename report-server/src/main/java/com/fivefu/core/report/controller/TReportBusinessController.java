@@ -1,21 +1,22 @@
 package com.fivefu.core.report.controller;
+import java.time.LocalDateTime;
 
 
 import com.fivefu.base.common.utils.StrUtils;
 import com.fivefu.base.web.vo.ResultInfo;
+import com.fivefu.core.module.auth.utils.SecurityUtil;
+import com.fivefu.core.module.auth.vo.SysAuthUser;
 import com.fivefu.core.report.anno.LogOption;
-import com.fivefu.core.report.common.BaseController;
 import com.fivefu.core.report.constant.BusinessType;
 import com.fivefu.core.report.entity.TReportBusiness;
-import com.fivefu.core.report.entity.request.ReqReportDataSource;
+import com.fivefu.core.report.service.TReportBusinessService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.ObjectUtils;
-import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -33,25 +34,85 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/t-report-business")
 public class TReportBusinessController extends BaseController {
 
+    @Autowired
+    TReportBusinessService tReportBusinessService;
+
     @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "id", required = false, dataType = "String"),
             @ApiImplicitParam(name = "businessName", value = "业务名称", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "pid", value = "父业务名称", required = false, dataType = "String")
+            @ApiImplicitParam(name = "pid", value = "父业务id", required = false, dataType = "String"),
     })
-    @ApiOperation(value = "新增修改业务树",httpMethod = "POST",response = ResultInfo.class)
+    @ApiOperation(value = "新增修改业务",httpMethod = "POST",response = ResultInfo.class)
     @PostMapping("/add")
-    @LogOption(title = "新增数据源",businessType = BusinessType.INSERT)
+    @LogOption(title = "新增修改业务",businessType = BusinessType.INSERT)
     public ResultInfo add(){
         try {
+            SysAuthUser sysAuthUser = SecurityUtil.currentUser();
             String businessName = request.getParameter("businessName");
+            String id = request.getParameter("id");
+            String pid = request.getParameter("pid");
             if(StrUtils.isNull(businessName)){
                 return ResultInfo.renderError("业务名称不能为空");
             }
             TReportBusiness tReportBusiness=new TReportBusiness();
-
-            return ResultInfo.renderSuccess();
+            tReportBusiness.setBusinessName(businessName);
+            tReportBusiness.setPid(Long.valueOf(pid));
+            if(ObjectUtils.isNotEmpty(id)){
+                tReportBusiness.setCreatedBy(String.valueOf(sysAuthUser.getUserId()));
+                tReportBusiness.setCreatedTime(LocalDateTime.now());
+            }else{
+                tReportBusiness.setUpdatedBy(String.valueOf(sysAuthUser.getUserId()));
+                tReportBusiness.setUpdatedTime(LocalDateTime.now());
+            }
+            return tReportBusinessService.saveReport(tReportBusiness);
         }catch (Exception e){
-            return ResultInfo.renderError("新增数据源异常");
+            return ResultInfo.renderError("新增修改业务异常");
         }
     }
+
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "id", required = false, dataType = "String"),
+    })
+    @ApiOperation(value = "删除业务",httpMethod = "POST",response = ResultInfo.class)
+    @PostMapping("/delete")
+    @LogOption(title = "删除业务",businessType = BusinessType.DELETE)
+    public ResultInfo delete(){
+        try {
+            String id = request.getParameter("id");
+            if(ObjectUtils.isEmpty(id)){
+                return ResultInfo.renderError("id不能为空");
+            }
+            tReportBusinessService.removeById(id);
+            return ResultInfo.renderSuccess();
+        }catch (Exception e){
+            return ResultInfo.renderError("删除业务异常");
+        }
+    }
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "id", required = false, dataType = "String"),
+    })
+    @ApiOperation(value = "查询业务树",httpMethod = "POST",response = ResultInfo.class)
+    @PostMapping("/delete")
+    @LogOption(title = "查询业务树",businessType = BusinessType.OTHER)
+    public ResultInfo getTree(){
+        try {
+            String id = request.getParameter("id");
+            String isTree = request.getParameter("isTree");
+            if(ObjectUtils.isEmpty(id)){
+                return ResultInfo.renderError("id不能为空");
+            }
+            if(StrUtils.isEmpty(id)){
+                return tReportBusinessService.getTree(null);
+            }else{
+                return tReportBusinessService.getTree(Long.valueOf(id));
+            }
+        }catch (Exception e){
+            return ResultInfo.renderError("业务异常");
+        }
+    }
+
+
 }
 

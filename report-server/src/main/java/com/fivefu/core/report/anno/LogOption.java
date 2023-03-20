@@ -26,6 +26,9 @@ public @interface LogOption {
      */
     public OperatorType operatorType() default OperatorType.MANAGE;
 
+
+    public String businessId() default "0";
+
     /**
      * 是否保存请求的参数
      */

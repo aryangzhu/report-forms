@@ -1,9 +1,12 @@
 package com.fivefu.core.report.aspect;
+import java.time.LocalDateTime;
 
 
 import com.fivefu.core.module.auth.utils.SecurityUtil;
 import com.fivefu.core.module.auth.vo.SysAuthUser;
 import com.fivefu.core.report.anno.LogOption;
+import com.fivefu.core.report.entity.TSysLog;
+import com.fivefu.core.report.service.TSysLogService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -11,6 +14,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -26,6 +30,9 @@ import java.util.Map;
 @Component
 public class LogAspect {
     private static final Logger logger = LoggerFactory.getLogger(LogAspect.class);
+
+    @Autowired
+    TSysLogService tSysLogService;
 
     /** 排除敏感属性字段 */
     public static final String[] EXCLUDE_PROPERTIES = { "password", "oldPassword", "newPassword", "confirmPassword" };
@@ -48,7 +55,6 @@ public class LogAspect {
         try{
             //获取当前用户
             SysAuthUser sysAuthUser = SecurityUtil.currentUser();
-
             //利用反射获取参数
             RequestAttributes ra = RequestContextHolder.getRequestAttributes();
             ServletRequestAttributes sra = (ServletRequestAttributes) ra;
@@ -67,9 +73,16 @@ public class LogAspect {
             LogOption logOption = method.getAnnotation(LogOption.class);
             //设置注解上的参数
             int ordinal = logOption.businessType().ordinal();
-
             String title = logOption.title();
-            System.out.println(ordinal+title);
+            String s = logOption.businessId();
+//            System.out.println(ordinal+title);
+            TSysLog tSysLog=new TSysLog();
+            tSysLog.setCreatedTime(LocalDateTime.now());
+            tSysLog.setUpdatedTime(LocalDateTime.now());
+            tSysLog.setInvokeId(sysAuthUser.getUserId());
+            tSysLog.setInvokeName(sysAuthUser.getUsername());
+            tSysLog.setBusiness(s);
+            tSysLogService.save(tSysLog);
             //使用消息队列
             //异步写入调用日志
         }catch (Exception exp){

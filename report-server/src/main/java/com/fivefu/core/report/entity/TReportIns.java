@@ -80,6 +80,12 @@ public class TReportIns implements Serializable {
     @TableField("param")
     private String param;
 
+    /**
+     * 业务id
+     */
+    @TableField("business_id")
+    private Long businessId;
+
 
     public Long getId() {
         return id;
@@ -159,6 +165,15 @@ public class TReportIns implements Serializable {
 
     public void setParam(String param) {
         this.param = param;
+    }
+
+
+    public Long getBusinessId() {
+        return businessId;
+    }
+
+    public void setBusinessId(Long businessId) {
+        this.businessId = businessId;
     }
 
     @Override

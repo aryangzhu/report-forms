@@ -3,7 +3,6 @@ package com.fivefu.core.report.controller;
 
 import com.fivefu.base.web.vo.ResultInfo;
 import com.fivefu.core.report.anno.LogOption;
-import com.fivefu.core.report.common.BaseController;
 import com.fivefu.core.report.constant.BusinessType;
 import com.fivefu.core.report.entity.request.ReqReportDataSource;
 import com.fivefu.core.report.service.TInsDatabaseService;
