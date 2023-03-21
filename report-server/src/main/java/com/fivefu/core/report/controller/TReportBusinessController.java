@@ -9,6 +9,7 @@ import com.fivefu.core.module.auth.vo.SysAuthUser;
 import com.fivefu.core.report.anno.LogOption;
 import com.fivefu.core.report.constant.BusinessType;
 import com.fivefu.core.report.entity.TReportBusiness;
+import com.fivefu.core.report.entity.TReportIns;
 import com.fivefu.core.report.service.TReportBusinessService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -16,6 +17,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -56,7 +58,9 @@ public class TReportBusinessController extends BaseController {
             }
             TReportBusiness tReportBusiness=new TReportBusiness();
             tReportBusiness.setBusinessName(businessName);
-            tReportBusiness.setPid(Long.valueOf(pid));
+            if(ObjectUtils.isNotEmpty(pid)){
+                tReportBusiness.setPid(Long.valueOf(pid));
+            }
             if(ObjectUtils.isNotEmpty(id)){
                 tReportBusiness.setCreatedBy(String.valueOf(sysAuthUser.getUserId()));
                 tReportBusiness.setCreatedTime(LocalDateTime.now());
@@ -93,16 +97,15 @@ public class TReportBusinessController extends BaseController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "id", required = false, dataType = "String"),
     })
-    @ApiOperation(value = "查询业务树",httpMethod = "POST",response = ResultInfo.class)
-    @PostMapping("/delete")
+    @ApiOperation(value = "查询业务树",httpMethod = "GET",response = TReportIns.class)
+    @GetMapping("/getTree")
     @LogOption(title = "查询业务树",businessType = BusinessType.OTHER)
     public ResultInfo getTree(){
         try {
             String id = request.getParameter("id");
-            String isTree = request.getParameter("isTree");
-            if(ObjectUtils.isEmpty(id)){
-                return ResultInfo.renderError("id不能为空");
-            }
+//            if(ObjectUtils.isEmpty(id)){
+//                return ResultInfo.renderError("id不能为空");
+//            }
             if(StrUtils.isEmpty(id)){
                 return tReportBusinessService.getTree(null);
             }else{

@@ -4,12 +4,19 @@ package com.fivefu.core.report.controller;
 import com.fivefu.base.web.vo.ResultInfo;
 import com.fivefu.core.report.anno.LogOption;
 import com.fivefu.core.report.constant.BusinessType;
+import com.fivefu.core.report.entity.ResDatasource;
+import com.fivefu.core.report.entity.request.ReqDataSourcePage;
 import com.fivefu.core.report.entity.request.ReqReportDataSource;
+import com.fivefu.core.report.exception.FFNullException;
 import com.fivefu.core.report.service.TInsDatabaseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -24,6 +31,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/t-ins-database")
 public class TInsDatabaseController extends BaseController {
 
+    private final static Logger logger= LoggerFactory.getLogger(TInsDatabaseController.class);
 
     @Autowired
     TInsDatabaseService tInsDatabaseService;
@@ -49,6 +57,23 @@ public class TInsDatabaseController extends BaseController {
             return ResultInfo.renderSuccess();
         }catch (Exception e){
             return ResultInfo.renderError("新增数据源异常");
+        }
+    }
+
+
+    @ApiOperation(value = "分页查询数据源列表",httpMethod = "POST",response = ResultInfo.class)
+    @PostMapping("/listPage")
+    public ResultInfo<List<ResDatasource>> listPage(@RequestBody ReqDataSourcePage reqDataSourcePage){
+        try {
+            ResultInfo resultInfo = tInsDatabaseService.listByPage(reqDataSourcePage);
+            resultInfo.setCode(0);
+            return  resultInfo;
+        }catch (FFNullException e){
+            logger.error("查询列表异常",e);
+            return ResultInfo.renderError("查询异常："+e.getMessage());
+        }catch (Exception e){
+            logger.error("查询列表异常",e);
+            return ResultInfo.renderError("查询异常");
         }
     }
 

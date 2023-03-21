@@ -87,8 +87,8 @@ public class LogAspect {
             //异步写入调用日志
         }catch (Exception exp){
             logger.error("==前置通知异常==");
-            logger.error("异常信息：{}",e.getMessage());
-            e.printStackTrace();
+            logger.error("异常信息：{}",exp.getMessage());
+            exp.printStackTrace();
         }
     }
 

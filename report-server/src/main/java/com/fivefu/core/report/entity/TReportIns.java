@@ -86,6 +86,13 @@ public class TReportIns implements Serializable {
     @TableField("business_id")
     private Long businessId;
 
+    /**
+     * 主报表id
+     */
+    @TableField("pid")
+    private Long pid;
+
+
 
     public Long getId() {
         return id;
@@ -174,6 +181,14 @@ public class TReportIns implements Serializable {
 
     public void setBusinessId(Long businessId) {
         this.businessId = businessId;
+    }
+
+    public Long getPid() {
+        return pid;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
     }
 
     @Override

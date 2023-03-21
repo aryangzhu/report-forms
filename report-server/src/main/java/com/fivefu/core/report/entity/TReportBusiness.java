@@ -69,6 +69,8 @@ public class TReportBusiness implements Serializable {
     @TableField("pid")
     private Long pid;
 
+
+    @TableField(exist = false)
     private List<TReportBusiness> children;
 
 

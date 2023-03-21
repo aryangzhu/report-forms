@@ -3,6 +3,7 @@ package com.fivefu.core.report.controller;
 import com.fivefu.base.fileupload.constant.FileTypeEnum;
 import com.fivefu.base.fileupload.minio.services.MinioServices;
 import com.fivefu.base.web.vo.ResultInfo;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,12 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.xml.transform.Result;
 import java.io.File;
 import java.util.Set;
 
+
+@Api(tags="文件上传下载服务")
+@RestController
+@RequestMapping("/t-file")
 public class FileUpLoadController extends BaseController{
     private final static Logger logger= LoggerFactory.getLogger(FileUpLoadController.class);
 

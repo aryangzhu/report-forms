@@ -1,6 +1,13 @@
 package com.fivefu.core.report.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.fivefu.base.common.utils.date.DateUtils;
+import com.fivefu.base.common.utils.str.StrUtils;
+import com.fivefu.base.web.vo.ResultInfo;
+import com.fivefu.core.report.entity.ResDatasource;
 import com.fivefu.core.report.entity.TInsDatabase;
+import com.fivefu.core.report.entity.request.ReqDataSourcePage;
 import com.fivefu.core.report.entity.request.ReqDatabases;
 import com.fivefu.core.report.entity.request.ReqReportDataSource;
 import com.fivefu.core.report.exception.FFNullException;
@@ -15,6 +22,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -51,6 +60,50 @@ public class TInsDatabaseServiceImpl extends ServiceImpl<TInsDatabaseMapper, TIn
             tInsDatabase.setUpdatedTime(LocalDateTime.now());
         }
         saveOrUpdate(tInsDatabase);
+    }
+
+    @Override
+    public ResultInfo listByPage(ReqDataSourcePage reqDataSourcePage) {
+        if(reqDataSourcePage==null){
+            throw new FFNullException("请检查参数是否为空");
+        }
+        QueryWrapper<TInsDatabase> tReportDatasoucesQueryWrapper = new QueryWrapper<TInsDatabase>();
+        if(reqDataSourcePage.getDatasourceType() !=null && reqDataSourcePage.getDatasourceType()!= 0){
+            tReportDatasoucesQueryWrapper.eq("database_type",reqDataSourcePage.getDatasourceType());
+        }
+
+        if(StrUtils.isNotNull(reqDataSourcePage.getName())){
+            tReportDatasoucesQueryWrapper.like("name_",reqDataSourcePage.getName());
+        }
+        //排序
+        tReportDatasoucesQueryWrapper.orderByDesc("updated_time");
+
+        Page<TInsDatabase> pageBean = new Page<TInsDatabase>(reqDataSourcePage.getPage(),reqDataSourcePage.getLimit());
+        Page<TInsDatabase> tDefDatasourcePage = getBaseMapper().selectPage(pageBean,tReportDatasoucesQueryWrapper);
+        //响应
+        List<TInsDatabase> datasoucesList = tDefDatasourcePage.getRecords();
+        Long count = tDefDatasourcePage.getTotal();
+
+
+        //构造响应
+        List<ResDatasource> resDatasourceList = new ArrayList<ResDatasource>();
+        datasoucesList.stream().forEach(tReportDatasouces -> {
+            ResDatasource resDatasource = new ResDatasource();
+            resDatasource.setId(tReportDatasouces.getId());
+            resDatasource.setCreatedBy(tReportDatasouces.getCreatedBy());
+            resDatasource.setCreatedTime(DateUtils.format(tReportDatasouces.getCreatedTime(),DateUtils.DEFAULT_DATETIME_PATTERN));
+            resDatasource.setUpdatedBy(tReportDatasouces.getUpdatedBy());
+            resDatasource.setUpdatedTime(DateUtils.format(tReportDatasouces.getUpdatedTime(),DateUtils.DEFAULT_DATETIME_PATTERN));
+            resDatasource.setDatasourceType(tReportDatasouces.getDatasourceType());
+//            TDataDic tDataDic = tDataDicService.getById(tReportDatasouces.getType());
+//            resDatasource.setDatasourceTypeName(tDataDic.getDicName());
+            resDatasource.setName(tReportDatasouces.getName());
+//            resDatasource.setInsDatasourceId(tReportDatasouces.getInsDatasourceId());
+            resDatasourceList.add(resDatasource);
+        });
+        ResultInfo<List<ResDatasource>> resultInfo = ResultInfo.renderSuccess(resDatasourceList);
+        resultInfo.setCount(count);
+        return resultInfo;
     }
 
 }

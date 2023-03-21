@@ -30,7 +30,7 @@ public class TReportBusinessServiceImpl extends ServiceImpl<TReportBusinessMappe
     public ResultInfo saveReport(TReportBusiness tReportBusiness) {
         try{
             saveOrUpdate(tReportBusiness);
-            return ResultInfo.renderSuccess();
+            return ResultInfo.renderSuccess(tReportBusiness.getId());
         }catch (Exception e){
             logger.error("新增异常",e);
             return ResultInfo.renderError("新增异常");
@@ -44,7 +44,8 @@ public class TReportBusinessServiceImpl extends ServiceImpl<TReportBusinessMappe
             if(ObjectUtils.isNotEmpty(id)){
                 queryWrapper.eq(TReportBusiness::getId,id);
             }
-            queryWrapper.eq(TReportBusiness::getIsDelete,0);
+            queryWrapper.eq(TReportBusiness::getIsDelete,0)
+                    .isNull(TReportBusiness::getPid);
             List<TReportBusiness> list = list(queryWrapper);
             for (TReportBusiness tReportBusiness:list) {
                 getTransTree(tReportBusiness);
