@@ -54,7 +54,7 @@ spring:
         connectionProperties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
       datasource:
         master:
-          url: jdbc:mysql://192.168.0.46:3306/evaluation?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+          url: jdbc:mysql://192.168.0.37:3306/fivefureport?characterEncoding=UTF-8&useUnicode=true&useSSL=false
           username: fivefu
           password: dtKgvHV6
           driver-class-name: com.mysql.cj.jdbc.Driver
