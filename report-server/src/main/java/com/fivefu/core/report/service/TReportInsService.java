@@ -5,7 +5,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fivefu.base.web.vo.ResultInfo;
 import com.fivefu.core.report.entity.TReportIns;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.fivefu.core.report.entity.request.ReqAccessReport;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
@@ -21,4 +24,7 @@ public interface TReportInsService extends IService<TReportIns> {
     ResultInfo saveReport(TReportIns tReportIns);
 
     ResultInfo getPage(LambdaQueryWrapper<TReportIns> queryWrapper, Page<TReportIns> pageBean);
+
+
+    public void accessReportHtml(ReqAccessReport reqAccessReport, HttpServletRequest request, HttpServletResponse httpServletResponse);
 }

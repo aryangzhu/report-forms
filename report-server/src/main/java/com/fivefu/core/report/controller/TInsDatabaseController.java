@@ -77,5 +77,22 @@ public class TInsDatabaseController extends BaseController {
         }
     }
 
+
+    @ApiOperation(value = "数据源下拉框",httpMethod = "POST",response = ResultInfo.class)
+    @PostMapping("/listSelect")
+    public ResultInfo<List<ResDatasource>> listSelect(){
+        try {
+            ResultInfo resultInfo = tInsDatabaseService.listSelect();
+            resultInfo.setCode(0);
+            return  resultInfo;
+        }catch (FFNullException e){
+            logger.error("查询列表异常",e);
+            return ResultInfo.renderError("查询异常："+e.getMessage());
+        }catch (Exception e){
+            logger.error("查询列表异常",e);
+            return ResultInfo.renderError("查询异常");
+        }
+    }
+
 }
 

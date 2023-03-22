@@ -68,6 +68,10 @@ public class TReportIns implements Serializable {
     @TableField("datasource_id")
     private Long datasourceId;
 
+
+    @TableField(exist = false)
+    private String datasourceName;
+
     /**
      * 文件地址
      */
@@ -86,12 +90,26 @@ public class TReportIns implements Serializable {
     @TableField("business_id")
     private Long businessId;
 
+    @TableField(exist = false)
+    private String businessName;
+
     /**
      * 主报表id
      */
     @TableField("pid")
     private Long pid;
 
+    /**
+     * jasper文件地址
+     */
+    @TableField("jasper_file")
+    private String jasperFile;
+
+    /**
+     * 访问路径
+     */
+    @TableField("access_file")
+    private String accessFile;
 
 
     public Long getId() {
@@ -189,6 +207,39 @@ public class TReportIns implements Serializable {
 
     public void setPid(Long pid) {
         this.pid = pid;
+    }
+
+    public String getDatasourceName() {
+        return datasourceName;
+    }
+
+    public void setDatasourceName(String datasourceName) {
+        this.datasourceName = datasourceName;
+    }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
+
+
+    public String getJasperFile() {
+        return jasperFile;
+    }
+
+    public void setJasperFile(String jasperFile) {
+        this.jasperFile = jasperFile;
+    }
+
+    public String getAccessFile() {
+        return accessFile;
+    }
+
+    public void setAccessFile(String accessFile) {
+        this.accessFile = accessFile;
     }
 
     @Override

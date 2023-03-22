@@ -9,9 +9,9 @@ import org.springframework.context.annotation.Configuration;
 public class FileServerConfig {
 
     //文件服务器IP
-    private String serverip;
+    private String serverip="http://192.168.0.21:9000";
     private String pathprefix;
-    private String tmpPath;//临时文件存储目录
+    private String tmpPath="/Users/liulei/data/template/";//临时文件存储目录
 
     public String getPathprefix() {
         return pathprefix;

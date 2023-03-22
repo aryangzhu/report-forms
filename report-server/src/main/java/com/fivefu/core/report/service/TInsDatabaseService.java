@@ -24,4 +24,6 @@ public interface TInsDatabaseService extends IService<TInsDatabase> {
     void add(ReqReportDataSource reqDatasources);
 
     ResultInfo listByPage(ReqDataSourcePage reqDataSourcePage);
+
+    ResultInfo listSelect();
 }

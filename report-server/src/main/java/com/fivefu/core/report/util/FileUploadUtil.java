@@ -118,7 +118,7 @@ public class FileUploadUtil {
         try {
             String zipEntryName ="";
             //指定编码，否则压缩包里面不能有中文目录
-            zip = new ZipFile(filePath, Charset.forName("gbk"));
+            zip = new ZipFile(filePath, Charset.forName("utf-8"));
             for(Enumeration entries = zip.entries(); entries.hasMoreElements();){
                 ZipEntry entry = (ZipEntry)entries.nextElement();
                 zipEntryName = entry.getName();
@@ -147,7 +147,7 @@ public class FileUploadUtil {
             //必须关闭，否则无法删除该zip文件
             zip.close();
             String outPath1 = outPath.substring(0, outPath.lastIndexOf(File.separator));
-            return outPath1;
+            return dirParsePath;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -199,4 +199,8 @@ public class FileUploadUtil {
             return false;
         }
     }
+
+
+
+
 }

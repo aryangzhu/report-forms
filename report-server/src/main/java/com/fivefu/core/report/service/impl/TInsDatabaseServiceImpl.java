@@ -1,5 +1,6 @@
 package com.fivefu.core.report.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fivefu.base.common.utils.date.DateUtils;
@@ -104,6 +105,15 @@ public class TInsDatabaseServiceImpl extends ServiceImpl<TInsDatabaseMapper, TIn
         ResultInfo<List<ResDatasource>> resultInfo = ResultInfo.renderSuccess(resDatasourceList);
         resultInfo.setCount(count);
         return resultInfo;
+    }
+
+    @Override
+    public ResultInfo listSelect() {
+        LambdaQueryWrapper<TInsDatabase> queryWrapper=new LambdaQueryWrapper<>();
+        queryWrapper.select(TInsDatabase::getId,TInsDatabase::getName)
+                .eq(TInsDatabase::getIsDelete,0);
+        List<TInsDatabase> list = list(queryWrapper);
+        return ResultInfo.renderSuccess(list);
     }
 
 }
