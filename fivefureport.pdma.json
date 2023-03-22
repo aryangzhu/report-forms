@@ -4,7 +4,7 @@
   "avatar": "",
   "version": "4.1.1",
   "createdTime": "2023-3-8 14:20:46",
-  "updatedTime": "2023-3-20 20:50:31",
+  "updatedTime": "2023-3-22 13:04:30",
   "dbConns": [],
   "profile": {
     "default": {
@@ -1638,6 +1638,40 @@
           "extProps": {},
           "domain": "FEB46343-972D-4E6C-BD63-B0D31F6D3564",
           "id": "5E2C1B18-E913-4383-8CBA-ACA098E549CB"
+        },
+        {
+          "defKey": "jasper_file",
+          "defName": "jasper文件地址",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "9087D815-3B32-4AF0-A034-731614DE7B67",
+          "id": "D2E1AE47-42BA-4A74-AAFE-B1333BE113FC"
+        },
+        {
+          "defKey": "access_file",
+          "defName": "访问路径",
+          "comment": "",
+          "type": "",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "extProps": {},
+          "domain": "9087D815-3B32-4AF0-A034-731614DE7B67",
+          "id": "85B9C5A9-9E30-4C78-8724-CBCD1A58DD1A"
         }
       ],
       "correlations": [],
