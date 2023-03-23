@@ -15,16 +15,25 @@ import com.fivefu.core.report.exception.FFNullException;
 import com.fivefu.core.report.mapper.TInsDatabaseMapper;
 import com.fivefu.core.report.service.TInsDatabaseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.fivefu.module.dictionary.entity.DbSysDict;
+import com.fivefu.module.dictionary.service.DbSysDictService;
+import com.fivefu.module.dictionary.service.impl.DbSysDictServiceImpl;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
+import java.awt.image.DataBufferShort;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -36,6 +45,12 @@ import java.util.List;
  */
 @Service
 public class TInsDatabaseServiceImpl extends ServiceImpl<TInsDatabaseMapper, TInsDatabase> implements TInsDatabaseService {
+
+    Map<Long,String> cacheMap=new HashMap<>();
+
+//    @Autowired
+//    DbSysDictService dbSysDictService;
+
 
     @Transactional(propagation= Propagation.REQUIRED)
     @Override
@@ -65,6 +80,12 @@ public class TInsDatabaseServiceImpl extends ServiceImpl<TInsDatabaseMapper, TIn
 
     @Override
     public ResultInfo listByPage(ReqDataSourcePage reqDataSourcePage) {
+//        DbSysDictServiceImpl dbSysDictService=new DbSysDictServiceImpl();
+        LambdaQueryWrapper<DbSysDict> queryWrapper=new LambdaQueryWrapper<>();
+        queryWrapper.eq(DbSysDict::getIsDelete,0)
+                .eq(DbSysDict::getDictDesc,"datasourceType");
+//        List<DbSysDict> list = dbSysDictService.list(queryWrapper);
+//        cacheMap = list.stream().collect(Collectors.toMap(DbSysDict::getId, DbSysDict::getDictName));
         if(reqDataSourcePage==null){
             throw new FFNullException("请检查参数是否为空");
         }
@@ -97,9 +118,11 @@ public class TInsDatabaseServiceImpl extends ServiceImpl<TInsDatabaseMapper, TIn
             resDatasource.setUpdatedTime(DateUtils.format(tReportDatasouces.getUpdatedTime(),DateUtils.DEFAULT_DATETIME_PATTERN));
             resDatasource.setDatasourceType(tReportDatasouces.getDatasourceType());
 //            TDataDic tDataDic = tDataDicService.getById(tReportDatasouces.getType());
-//            resDatasource.setDatasourceTypeName(tDataDic.getDicName());
+//            resDatasource.setDatasourceTypeName(cache.getOrDefault(tReportDatasouces.getId(),""));
             resDatasource.setName(tReportDatasouces.getName());
-//            resDatasource.setInsDatasourceId(tReportDatasouces.getInsDatasourceId());
+            String s = cacheMap.getOrDefault(tReportDatasouces.getId(),"");
+//            resDatasource.setInsDatasourceId(s);
+            resDatasource.setDatasourceTypeName(s);
             resDatasourceList.add(resDatasource);
         });
         ResultInfo<List<ResDatasource>> resultInfo = ResultInfo.renderSuccess(resDatasourceList);

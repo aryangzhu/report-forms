@@ -19,14 +19,11 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.print.DocFlavor;
 import javax.servlet.http.HttpServletResponse;
+import java.net.URLDecoder;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -143,7 +140,7 @@ public class TReportInsController extends BaseController {
 
     @ApiImplicitParam(name = "id", value = "id", required = true, dataType = "String")
     @ApiOperation(value = "删除",httpMethod = "GET",response = ResultInfo.class)
-    @PostMapping("/removeById")
+    @GetMapping("/removeById")
     @LogOption(title = "删除",businessType = BusinessType.DELETE)
     public ResultInfo removeById(){
         try{
@@ -161,21 +158,38 @@ public class TReportInsController extends BaseController {
         }
     }
 
-
-    @ApiOperation(value = "预览",httpMethod = "POST",response = ResultInfo.class)
-    @PostMapping("/accessReport")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "id", required = false, dataType = "String"),
+            @ApiImplicitParam(name = "param", value = "id", required = false, dataType = "String"),
+            @ApiImplicitParam(name = "exportType", value = "id", required = false, dataType = "String"),
+    })
+    @ApiOperation(value = "预览",httpMethod = "GET",response = ResultInfo.class)
+    @GetMapping("/accessReport")
     @LogOption(title = "预览",businessType = BusinessType.OTHER)
-    public void accessReport(@RequestBody ReqAccessReport reqAccessReport, HttpServletResponse response){
+    public void accessReport(HttpServletResponse response){
         try{
+            String s = request.getRequestURL().toString();
+            String queryString = request.getQueryString();
+            queryString = URLDecoder.decode(queryString, "utf-8");
             Map<String, String> map = formatDataToMap();
-            String id = reqAccessReport.getId();
+            String id = map.get("id");
+            String param = map.get("param");
+            String exportType = map.get("exportType");
             if(StrUtils.isNull(id)){
                 return ;
             }
+            ReqAccessReport reqAccessReport=new ReqAccessReport();
+            reqAccessReport.setId(id);
+            reqAccessReport.setParam(param);
+            reqAccessReport.setExportType(exportType);
+//            System.out.println(s+"?"+queryString);
             tReportInsService.accessReportHtml(reqAccessReport,request,response);
         }catch (Exception e){
             return ;
         }
     }
+
+
+
 }
 

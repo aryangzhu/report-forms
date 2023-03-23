@@ -3,6 +3,7 @@ package com.fivefu.core.report.service.impl;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fivefu.base.common.utils.StrUtils;
 import com.fivefu.base.common.utils.date.DateUtils;
@@ -29,9 +30,11 @@ import com.fivefu.core.report.util.FileUploadUtil;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.HtmlExporter;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
-import net.sf.jasperreports.export.SimpleHtmlReportConfiguration;
+import net.sf.jasperreports.engine.export.JRCsvExporter;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
+import net.sf.jasperreports.export.*;
 import net.sf.jasperreports.j2ee.servlets.ImageServlet;
 import net.sf.jasperreports.web.util.WebHtmlResourceHandler;
 import okhttp3.OkHttpClient;
@@ -99,11 +102,7 @@ public class TReportInsServiceImpl extends ServiceImpl<TReportInsMapper, TReport
     @Autowired
     TReportBusinessService tReportBusinessService;
 
-
-//    @Value("${ffbase.fileupload.path}")
-//    private String path;
-
-    @Value(value = "/Users/liulei/data/template")
+    @Value("${ffbase.fileupload.path}")
     private String path;
 
     /**
@@ -308,8 +307,7 @@ public class TReportInsServiceImpl extends ServiceImpl<TReportInsMapper, TReport
      * @param reqAccessReport
      * @return
      */
-    @Override
-    public void accessReportHtml(ReqAccessReport reqAccessReport,HttpServletRequest request, HttpServletResponse response) {
+    public void accessReportHtml1(ReqAccessReport reqAccessReport,HttpServletRequest request, HttpServletResponse response) {
         //先找到报表实例
         LambdaQueryWrapper<TReportIns> tInsReportQueryWrapper = new LambdaQueryWrapper<>();
         tInsReportQueryWrapper.eq(TReportIns::getId,reqAccessReport.getId());
@@ -700,5 +698,222 @@ public class TReportInsServiceImpl extends ServiceImpl<TReportInsMapper, TReport
         }
 
     }
+
+
+    /**
+     * 导出报表
+     * @param reqAccessReport
+     * @param request
+     * @param response
+     */
+    @Override
+    public void accessReportHtml(ReqAccessReport reqAccessReport, HttpServletRequest request, HttpServletResponse response) {
+        JasperPrint jasperPrint = getJasperPrint(reqAccessReport);
+        if(com.fivefu.base.common.utils.str.StrUtils.isNull(reqAccessReport.getExportType())){
+            reqAccessReport.setExportType("html");
+        }
+        //根据不同类型，导出各式报表
+        if ("pdf".equals(reqAccessReport.getExportType())) {
+            try {
+                String fileName = new String((UUID.randomUUID()+".pdf").toString().getBytes(),"ISO8859-1");
+                response.setHeader("Content-Disposition", "attachment;fileName=" + fileName);// 设置文件名（这个信息头会告诉浏览器这个文件的名字和类型）
+            }catch (Exception e){
+                logger.error("创建导出名称失败");
+            }
+            JRPdfExporter exporter = new JRPdfExporter();
+            try {
+                exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+                exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(response.getOutputStream()));
+                exporter.exportReport();
+                JasperExportManager.exportReportToPdfStream(jasperPrint,response.getOutputStream());
+            } catch (IOException e) {
+                logger.error("IOException occured", e);
+                e.printStackTrace();
+            } catch (JRException e) {
+                logger.error("JRException while exporting for pdf format", e);
+                e.printStackTrace();
+            }
+        } else if ("xls".equals(reqAccessReport.getExportType())) {
+            JRXlsExporter exporter = new JRXlsExporter();
+            try {
+                String fileName = new String((UUID.randomUUID()+".xlsx").toString().getBytes(),"ISO8859-1");
+                response.setHeader("Content-Disposition", "attachment;fileName=" + fileName);// 设置文件名（这个信息头会告诉浏览器这个文件的名字和类型）
+                exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+                exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(response.getOutputStream()));
+                SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
+//                configuration.setOnePagePerSheet(true);
+                configuration.setOnePagePerSheet(false);
+                exporter.setConfiguration(configuration);
+                exporter.exportReport();
+            } catch (JRException e) {
+                logger.error("JRException while exporting for xls format", e);
+                e.printStackTrace();
+            } catch (IOException e) {
+                logger.error("IOException occured", e);
+                e.printStackTrace();
+            }
+        } else if ("csv".equals(reqAccessReport.getExportType())) {
+            JRCsvExporter exporter = new JRCsvExporter();
+            try {
+                String fileName = new String((UUID.randomUUID()+".csv").toString().getBytes(),"ISO8859-1");
+                response.setHeader("Content-Disposition", "attachment;fileName=" + fileName);// 设置文件名（这个信息头会告诉浏览器这个文件的名字和类型）
+                exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+                exporter.setExporterOutput(new SimpleWriterExporterOutput(response.getOutputStream()));
+                exporter.exportReport();
+            } catch (IOException e) {
+                logger.error("IOException occured", e);
+                e.printStackTrace();
+            } catch (JRException e) {
+                logger.error("JRException while exporting report csv format", e);
+                e.printStackTrace();
+            }
+        } else if ("html".equals(reqAccessReport.getExportType())) {
+            request.getSession().setAttribute(ImageServlet.DEFAULT_JASPER_PRINT_SESSION_ATTRIBUTE,jasperPrint);
+            HtmlExporter exporterHTML = new HtmlExporter();
+            SimpleExporterInput exporterInput = new SimpleExporterInput(jasperPrint);
+            exporterHTML.setExporterInput(exporterInput);
+
+            SimpleHtmlExporterOutput exporterOutput;
+            try {
+                exporterOutput = new SimpleHtmlExporterOutput(response.getOutputStream());
+                exporterOutput.setImageHandler(new WebHtmlResourceHandler("image?image={0}"));
+                exporterHTML.setExporterOutput(exporterOutput);
+
+                SimpleHtmlReportConfiguration reportExportConfiguration = new SimpleHtmlReportConfiguration();
+                reportExportConfiguration.setWhitePageBackground(false);
+                reportExportConfiguration.setRemoveEmptySpaceBetweenRows(true);
+                exporterHTML.setConfiguration(reportExportConfiguration);
+                exporterHTML.exportReport();
+            } catch (IOException e) {
+                logger.error("IOException occured", e);
+                e.printStackTrace();
+            } catch (JRException e) {
+                logger.error("JRException while exporting for html format", e);
+                e.printStackTrace();
+            }
+        } else if ("docx".equals(reqAccessReport.getExportType())) {
+            try {
+                String fileName = new String((UUID.randomUUID()+".docx").toString().getBytes(),"ISO8859-1");
+                response.setHeader("Content-Disposition", "attachment;fileName=" + fileName);// 设置文件名（这个信息头会告诉浏览器这个文件的名字和类型）
+            }catch (Exception e){
+                logger.error("创建导出名称失败");
+            }
+            JRDocxExporter exporter = new JRDocxExporter();
+            try {
+                exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+                exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(response.getOutputStream()));
+                exporter.exportReport();
+            } catch (IOException e) {
+                logger.error("IOException occured", e);
+                e.printStackTrace();
+            } catch (JRException e) {
+                logger.error("JRException while exporting for docx format", e);
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
+    /**
+     * 获取JasperPrint
+     * @param reqAccessReport
+     * @return
+     */
+    public JasperPrint getJasperPrint(ReqAccessReport reqAccessReport){
+        //先找到报表实例
+        LambdaQueryWrapper<TReportIns> tInsReportQueryWrapper = new LambdaQueryWrapper<>();
+        tInsReportQueryWrapper.eq(TReportIns::getId,reqAccessReport.getId());
+        //获取主报表实例
+        List<TReportIns> tInsReportList = list(tInsReportQueryWrapper);
+        if(tInsReportList ==null || tInsReportList.size()==0){
+            throw new FFNullException("未找到要访问的报表");
+        }
+        if(tInsReportList.size()>1){
+            throw new FFNullException("系统异常，出现1个以上相同报表实例");
+        }
+        //报表实例
+        TReportIns tReportIns = tInsReportList.get(0);
+        //如果临时文件中没有当前jasper文件，那么将重新下载.文件的命名规则为：key+"_"+id+".jasper"
+        File jaserFile = getJasperFile(tReportIns);
+        //获取子报表实例
+        tInsReportQueryWrapper=new LambdaQueryWrapper<>();
+        tInsReportQueryWrapper.eq(TReportIns::getPid,tReportIns.getId());
+        List<TReportIns> subInsReportList=list(tInsReportQueryWrapper);
+        List<File> fileList=new ArrayList<>();
+        //子报表文件
+        for(TReportIns insReport:subInsReportList){
+            File subjapserFile=getJasperFile(insReport);
+            fileList.add(subjapserFile);
+        }
+        //获取报表的数据源
+        TInsDatabase tInsDatabase = tInsDatabaseService.getById(tReportIns.getDatasourceId());
+        if(ObjectUtils.isEmpty(tInsDatabase)){
+            //填充生成报表
+            try {
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jaserFile.getAbsolutePath(), null, new JRBeanCollectionDataSource(null));
+                return jasperPrint;
+            } catch (JRException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        //不同的数据源类型，有不同的处理方式
+        if(tInsDatabase.getDatabaseType()==14) { //数据库
+            Connection connection = getConnection(tInsDatabase.getId());
+            //查询数据源
+            try {
+                //获取网页传递的参数
+                Map<String,Object> parameters = createAccessParams(reqAccessReport.getParam());
+                //此时主子报表使用同一个数据源
+                if(fileList.size()>0){
+                    String SUBREPORT_DIR=fileServerConfig.getTmpPath();
+                    parameters.put("SUBREPORT_DIR",SUBREPORT_DIR);
+                }
+                //使用JasperPrint
+                JasperPrint jasperPrint=JasperFillManager.fillReport(jaserFile.getAbsolutePath(),parameters,connection);
+                return jasperPrint;
+            }catch (Exception e){
+                logger.error("生成报表出现错误",e);
+            }
+        }else if(tInsDatabase.getDatabaseType()!=14){
+            //说明不是数据库数据源,使用自定义的数据源
+            //获取实例id
+            //http接口数据源
+            //获取实例对应的报表
+            //解析field对应的类型
+            Map<String, String> fieldMap = parseFieldType(tReportIns.getId());
+            //获取报表实例对应的数据源
+            Long datasourceId = tReportIns.getDatasourceId();
+            TInsDatabase tInsDatabase1 = tInsDatabaseService.getById(datasourceId);
+            if(ObjectUtils.isEmpty(tInsDatabase1)){
+                return null;
+            }
+            String url = tInsDatabase1.getUrl();
+            //调用http接口获取数据
+            DataSourceBeanFactory dataSourceBeanFactory=new DataSourceBeanFactory();
+            ResultInfo resultInfo = dataSourceBeanFactory.getInstance0(url);
+            if(ObjectUtils.isEmpty(resultInfo.getData())){
+                return null;
+            }
+            //data中的数据已经做了处理,返回的是JSONArray格式
+            JSONArray jsonArray = (JSONArray) resultInfo.getData();
+            if(ObjectUtils.isEmpty(jsonArray)||jsonArray.size()==0){
+                return null;
+            }
+            //对jsonArray中的数据类型做转换,和报表中的数据类型保持一致
+            convert(jsonArray,fieldMap);
+            //填充生成报表
+            try {
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jaserFile.getAbsolutePath(), null, new JRBeanCollectionDataSource(jsonArray));
+                return jasperPrint;
+            } catch (JRException e) {
+                throw new RuntimeException(e);
+            }
+        }else{
+            throw new FFNullException("未找到匹配的数据源类型");
+        }
+        return null;
+    }
+
 
 }
