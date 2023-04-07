@@ -27,6 +27,7 @@ import com.fivefu.core.report.service.TReportInsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fivefu.core.report.util.CusHttpUtil;
 import com.fivefu.core.report.util.FileUploadUtil;
+import com.fivefu.module.dictionary.service.DbSysDictService;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.HtmlExporter;
@@ -101,6 +102,9 @@ public class TReportInsServiceImpl extends ServiceImpl<TReportInsMapper, TReport
 
     @Autowired
     TReportBusinessService tReportBusinessService;
+
+    @Autowired
+    DbSysDictService dbSysDictService;
 
     @Value("${ffbase.fileupload.path}")
     private String path;

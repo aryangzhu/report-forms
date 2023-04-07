@@ -1,5 +1,6 @@
 package com.fivefu.core.report;
 
+import com.fivefu.module.dictionary.config.EnableDict;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -11,6 +12,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 @SpringBootApplication
+@EnableDict
 public class ReportServerApplication {
 
         private final static Logger logger= LoggerFactory.getLogger(ReportServerApplication.class);
