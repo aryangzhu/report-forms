@@ -156,6 +156,22 @@
             <artifactId>itext</artifactId>
             <version>2.1.7.js10</version>
         </dependency>
+
+        <!-- Token生成与解析-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.13.0</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
@@ -163,7 +179,6 @@
             <version>3.0.9</version>
             <!--3.0.10-->
             <type>pom</type>
-
         </dependency>
         <!--*********************集成jasper 相关jar包  结束**********************************-->
 
