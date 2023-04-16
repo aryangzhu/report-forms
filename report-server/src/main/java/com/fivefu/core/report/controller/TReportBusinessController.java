@@ -11,6 +11,7 @@ import com.fivefu.core.report.constant.BusinessType;
 import com.fivefu.core.report.entity.TReportBusiness;
 import com.fivefu.core.report.entity.TReportIns;
 import com.fivefu.core.report.service.TReportBusinessService;
+import com.fivefu.core.report.util.RedisUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -35,6 +36,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/t-report-business")
 public class TReportBusinessController extends BaseController {
+
+    @Autowired
+    RedisUtil redisUtil;
 
     @Autowired
     TReportBusinessService tReportBusinessService;
@@ -103,9 +107,8 @@ public class TReportBusinessController extends BaseController {
     public ResultInfo getTree(){
         try {
             String id = request.getParameter("id");
-//            if(ObjectUtils.isEmpty(id)){
-//                return ResultInfo.renderError("id不能为空");
-//            }
+            //先检查缓存中是否有这条数据
+
             if(StrUtils.isEmpty(id)){
                 return tReportBusinessService.getTree(null);
             }else{

@@ -89,8 +89,8 @@ public class TReportInsServiceImpl extends ServiceImpl<TReportInsMapper, TReport
 
     Map<Long,TInsDatabase> map2=new HashMap<>();
 
-    @Autowired
-    MinioServices minioService;
+//    @Autowired
+//    MinioServices minioService;
 
 
     @Autowired
@@ -290,8 +290,8 @@ public class TReportInsServiceImpl extends ServiceImpl<TReportInsMapper, TReport
 //                    +DateUtils.getDay(LocalDateTime.now())+"/"+DateUtils.getHour(LocalDateTime.now())+"/"+DateUtils.getMinutes(LocalDateTime.now())+"/";
             InputStream inputStream=new FileInputStream(file);
             MultipartFile file1= new MockMultipartFile(file.getName(),inputStream);
-//            minioService.fileUpload(inputStream,file.getName(),"xml",file1.getContentType());
-            String resultPath = minioService.uploadFile(file1);
+//            String resultPath = minioService.uploadFile(file1);
+            String resultPath="data/temp";
             ResultInfo resultInfo =  ResultInfo.renderSuccess(resultPath);
             resultInfo.setCode(0);
             //文件上传之后进行删除

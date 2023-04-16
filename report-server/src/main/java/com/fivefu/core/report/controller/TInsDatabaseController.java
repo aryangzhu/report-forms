@@ -80,6 +80,7 @@ public class TInsDatabaseController extends BaseController {
 
     @ApiOperation(value = "数据源下拉框",httpMethod = "POST",response = ResultInfo.class)
     @PostMapping("/listSelect")
+    @LogOption(title = "查询数据源",businessType = BusinessType.OTHER)
     public ResultInfo<List<ResDatasource>> listSelect(){
         try {
             ResultInfo resultInfo = tInsDatabaseService.listSelect();

@@ -5,6 +5,11 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
 import java.io.Serializable;
 
 /**
@@ -36,6 +41,8 @@ public class TSysLog implements Serializable {
      * 创建时间
      */
     @TableField("created_time")
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class) // 反序列化
+    @JsonSerialize(using = LocalDateTimeSerializer.class) // 序列化
     private LocalDateTime createdTime;
 
     /**
@@ -48,6 +55,8 @@ public class TSysLog implements Serializable {
      * 更新时间
      */
     @TableField("updated_time")
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class) // 反序列化
+    @JsonSerialize(using = LocalDateTimeSerializer.class) // 序列化
     private LocalDateTime updatedTime;
 
     /**
