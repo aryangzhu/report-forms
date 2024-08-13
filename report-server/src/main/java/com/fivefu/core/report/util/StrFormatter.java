@@ -1,4 +1,4 @@
-package com.fivefu.core.report.util;
+package com.example.core.report.util;
 
 /**
  * 字符串格式化

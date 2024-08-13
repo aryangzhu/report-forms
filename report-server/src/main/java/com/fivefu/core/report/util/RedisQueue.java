@@ -1,4 +1,4 @@
-package com.fivefu.core.report.util;
+package com.example.core.report.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

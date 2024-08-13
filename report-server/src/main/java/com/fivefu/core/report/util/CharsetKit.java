@@ -1,4 +1,4 @@
-package com.fivefu.core.report.util;
+package com.example.core.report.util;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;

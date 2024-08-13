@@ -1,6 +1,6 @@
-package com.fivefu.core.report.util;
+package com.example.core.report.util;
 
-import com.fivefu.core.report.constant.Constants;
+import com.example.core.report.constant.Constants;
 import org.springframework.util.AntPathMatcher;
 
 import java.util.*;

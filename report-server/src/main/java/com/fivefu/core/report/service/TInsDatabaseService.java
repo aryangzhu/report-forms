@@ -1,10 +1,10 @@
-package com.fivefu.core.report.service;
+package com.example.core.report.service;
 
-import com.fivefu.base.web.vo.ResultInfo;
-import com.fivefu.core.report.entity.TInsDatabase;
+import com.example.base.web.vo.ResultInfo;
+import com.example.core.report.entity.TInsDatabase;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.fivefu.core.report.entity.request.ReqDataSourcePage;
-import com.fivefu.core.report.entity.request.ReqReportDataSource;
+import com.example.core.report.entity.request.ReqDataSourcePage;
+import com.example.core.report.entity.request.ReqReportDataSource;
 
 /**
  * <p>

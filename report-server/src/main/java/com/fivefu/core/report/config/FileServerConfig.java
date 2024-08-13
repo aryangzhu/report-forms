@@ -1,4 +1,4 @@
-package com.fivefu.core.report.config;
+package com.example.core.report.config;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -1,4 +1,4 @@
-package com.fivefu.core.report.entity.request;
+package com.example.core.report.entity.request;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

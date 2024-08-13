@@ -3,8 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>fivefu-report-forms</artifactId>
-        <groupId>com.fivefu.core</groupId>
+        <artifactId>example-report-forms</artifactId>
+        <groupId>com.example.core</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -22,8 +22,8 @@
         <artifactId>druid-spring-boot-starter</artifactId>
     </dependency>
     <dependency>
-        <groupId>com.fivefu.base</groupId>
-        <artifactId>fivefu-boot-base-web-dependencies</artifactId>
+        <groupId>com.example.base</groupId>
+        <artifactId>example-boot-base-web-dependencies</artifactId>
     </dependency>
     <!-- mysql -->
     <dependency>
@@ -61,27 +61,27 @@
     </dependency>
     <!-- 文件服务器-->
     <dependency>
-        <artifactId>fivefu-boot-base-fileupload-minio-starter</artifactId>
-        <groupId>com.fivefu.base</groupId>
+        <artifactId>example-boot-base-fileupload-minio-starter</artifactId>
+        <groupId>com.example.base</groupId>
     </dependency>
     <dependency>
-        <artifactId>fivefu-boot-base-common-utils</artifactId>
-        <groupId>com.fivefu.base</groupId>
+        <artifactId>example-boot-base-common-utils</artifactId>
+        <groupId>com.example.base</groupId>
     </dependency>
     <dependency>
-        <groupId>com.fivefu.base</groupId>
-        <artifactId>fivefu-boot-base-web-swagger-starter</artifactId>
+        <groupId>com.example.base</groupId>
+        <artifactId>example-boot-base-web-swagger-starter</artifactId>
     </dependency>
     <!-- dict 数据字典 -->
     <dependency>
-        <groupId>com.fivefu.base.module</groupId>
-        <artifactId>fivefu-boot-module-dictionary</artifactId>
+        <groupId>com.example.base.module</groupId>
+        <artifactId>example-boot-module-dictionary</artifactId>
     </dependency>
 
         <!-- 单点登陆客户端-->
         <dependency>
-            <groupId>com.fivefu.core</groupId>
-            <artifactId>fivefu-boot-module-auth-token-client</artifactId>
+            <groupId>com.example.core</groupId>
+            <artifactId>example-boot-module-auth-token-client</artifactId>
             <version>1.0.0-RELEASE</version>
         </dependency>
 

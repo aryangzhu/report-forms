@@ -1,4 +1,4 @@
-package com.fivefu.core.report.entity;
+package com.example.core.report.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;

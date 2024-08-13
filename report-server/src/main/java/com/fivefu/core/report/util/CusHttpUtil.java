@@ -1,4 +1,4 @@
-package com.fivefu.core.report.util;
+package com.example.core.report.util;
 
 import okhttp3.ConnectionPool;
 import okhttp3.MediaType;

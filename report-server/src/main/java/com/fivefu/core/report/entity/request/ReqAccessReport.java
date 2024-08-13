@@ -1,4 +1,4 @@
-package com.fivefu.core.report.entity.request;
+package com.example.core.report.entity.request;
 
 import com.alibaba.fastjson.JSONArray;
 import io.swagger.annotations.ApiModel;

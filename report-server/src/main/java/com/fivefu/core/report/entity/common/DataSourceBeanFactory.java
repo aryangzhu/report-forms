@@ -1,11 +1,11 @@
-package com.fivefu.core.report.entity.common;
+package com.example.core.report.entity.common;
 
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.fivefu.base.HttpUtil;
-import com.fivefu.base.web.vo.ResultInfo;
-import com.fivefu.httpbase.HttpClientUtil;
+import com.example.base.HttpUtil;
+import com.example.base.web.vo.ResultInfo;
+import com.example.httpbase.HttpClientUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;

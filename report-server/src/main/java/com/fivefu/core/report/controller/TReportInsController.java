@@ -1,18 +1,18 @@
-package com.fivefu.core.report.controller;
+package com.example.core.report.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.fivefu.base.common.utils.StrUtils;
-import com.fivefu.base.web.vo.ResultInfo;
-import com.fivefu.core.module.auth.utils.SecurityUtil;
-import com.fivefu.core.module.auth.vo.SysAuthUser;
-import com.fivefu.core.report.anno.LogOption;
-import com.fivefu.core.report.constant.BusinessType;
-import com.fivefu.core.report.entity.TReportIns;
-import com.fivefu.core.report.entity.request.ReqAccessReport;
-import com.fivefu.core.report.service.TReportInsService;
+import com.example.base.common.utils.StrUtils;
+import com.example.base.web.vo.ResultInfo;
+import com.example.core.module.auth.utils.SecurityUtil;
+import com.example.core.module.auth.vo.SysAuthUser;
+import com.example.core.report.anno.LogOption;
+import com.example.core.report.constant.BusinessType;
+import com.example.core.report.entity.TReportIns;
+import com.example.core.report.entity.request.ReqAccessReport;
+import com.example.core.report.service.TReportInsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

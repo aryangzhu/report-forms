@@ -1,7 +1,7 @@
-package com.fivefu.core.report.service;
+package com.example.core.report.service;
 
-import com.fivefu.base.web.vo.ResultInfo;
-import com.fivefu.core.report.entity.TReportBusiness;
+import com.example.base.web.vo.ResultInfo;
+import com.example.core.report.entity.TReportBusiness;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

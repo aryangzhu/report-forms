@@ -1,4 +1,4 @@
-package com.fivefu.core.report.generate;
+package com.example.core.report.generate;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
@@ -48,10 +48,10 @@ public class MyBatisCodeGenerator {
 
         // 数据源配置
         //String dbUrl = "jdbc:mysql://192.168.0.6:3306/ffdevops?characterEncoding=UTF-8&useUnicode=true&useSSL=false";
-        String dbUrl ="jdbc:mysql://192.168.0.37:3306/fivefuReport?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=UTC";
+        String dbUrl ="jdbc:mysql://192.168.0.37:3306/exampleReport?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=UTC";
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
         dataSourceConfig.setDbType(DbType.MYSQL).setUrl(dbUrl)
-                .setUsername("fivefu").setPassword("fivefu")
+                .setUsername("example").setPassword("example")
                 .setDriverName("com.mysql.cj.jdbc.Driver");
         mpg.setDataSource(dataSourceConfig);
 
@@ -60,7 +60,7 @@ public class MyBatisCodeGenerator {
         // pc.setModuleName(scanner("模块名"));
         pc.setParent(null)
                 .setXml("mapper")
-                .setParent("com.fivefu.core.report");
+                .setParent("com.example.core.report");
         mpg.setPackageInfo(pc);
 
         // 策略配置
@@ -69,7 +69,7 @@ public class MyBatisCodeGenerator {
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setInclude(scanner("表名:"));//
         strategy.setRestControllerStyle(true);
-        //strategy.setSuperControllerClass("com.fivefu.base.web.controller.BaseController");
+        //strategy.setSuperControllerClass("com.example.base.web.controller.BaseController");
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setEntityTableFieldAnnotationEnable(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");

@@ -1,10 +1,10 @@
-package com.fivefu.core.report.service.impl;
+package com.example.core.report.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.fivefu.base.web.vo.ResultInfo;
-import com.fivefu.core.report.entity.TReportBusiness;
-import com.fivefu.core.report.mapper.TReportBusinessMapper;
-import com.fivefu.core.report.service.TReportBusinessService;
+import com.example.base.web.vo.ResultInfo;
+import com.example.core.report.entity.TReportBusiness;
+import com.example.core.report.mapper.TReportBusinessMapper;
+import com.example.core.report.service.TReportBusinessService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;

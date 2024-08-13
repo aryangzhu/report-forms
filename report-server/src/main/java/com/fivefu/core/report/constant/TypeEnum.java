@@ -1,4 +1,4 @@
-package com.fivefu.core.report.constant;
+package com.example.core.report.constant;
 
 public enum TypeEnum {
     Long(0,"java.lang.Long");

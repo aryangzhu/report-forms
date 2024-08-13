@@ -1,6 +1,6 @@
-package com.fivefu.core.report;
+package com.example.core.report;
 
-import com.fivefu.module.dictionary.config.EnableDict;
+import com.example.module.dictionary.config.EnableDict;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;

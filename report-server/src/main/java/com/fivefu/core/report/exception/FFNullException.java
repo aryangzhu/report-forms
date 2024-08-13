@@ -1,4 +1,4 @@
-package com.fivefu.core.report.exception;
+package com.example.core.report.exception;
 
 public class FFNullException extends RuntimeException{
 

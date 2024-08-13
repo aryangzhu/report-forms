@@ -1,4 +1,4 @@
-package com.fivefu.core.report.util;
+package com.example.core.report.util;
 //redis工具类
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

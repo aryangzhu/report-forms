@@ -1,4 +1,4 @@
-package com.fivefu.core.report.entity.common;
+package com.example.core.report.entity.common;
 
 /**
  * 分页请求父类

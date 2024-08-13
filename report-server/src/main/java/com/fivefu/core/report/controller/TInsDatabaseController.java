@@ -1,14 +1,14 @@
-package com.fivefu.core.report.controller;
+package com.example.core.report.controller;
 
 
-import com.fivefu.base.web.vo.ResultInfo;
-import com.fivefu.core.report.anno.LogOption;
-import com.fivefu.core.report.constant.BusinessType;
-import com.fivefu.core.report.entity.ResDatasource;
-import com.fivefu.core.report.entity.request.ReqDataSourcePage;
-import com.fivefu.core.report.entity.request.ReqReportDataSource;
-import com.fivefu.core.report.exception.FFNullException;
-import com.fivefu.core.report.service.TInsDatabaseService;
+import com.example.base.web.vo.ResultInfo;
+import com.example.core.report.anno.LogOption;
+import com.example.core.report.constant.BusinessType;
+import com.example.core.report.entity.ResDatasource;
+import com.example.core.report.entity.request.ReqDataSourcePage;
+import com.example.core.report.entity.request.ReqReportDataSource;
+import com.example.core.report.exception.FFNullException;
+import com.example.core.report.service.TInsDatabaseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;

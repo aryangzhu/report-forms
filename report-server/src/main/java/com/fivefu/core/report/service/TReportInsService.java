@@ -1,11 +1,11 @@
-package com.fivefu.core.report.service;
+package com.example.core.report.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.fivefu.base.web.vo.ResultInfo;
-import com.fivefu.core.report.entity.TReportIns;
+import com.example.base.web.vo.ResultInfo;
+import com.example.core.report.entity.TReportIns;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.fivefu.core.report.entity.request.ReqAccessReport;
+import com.example.core.report.entity.request.ReqAccessReport;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

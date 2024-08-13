@@ -1,4 +1,4 @@
-package com.fivefu.core.report.util;
+package com.example.core.report.util;
 
 //import com.ruoyi.common.constant.Constants;
 //import com.ruoyi.common.utils.LogUtils;

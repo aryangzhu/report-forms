@@ -1,4 +1,4 @@
-package com.fivefu.core.report.constant;
+package com.example.core.report.constant;
 
 import io.jsonwebtoken.Claims;
 

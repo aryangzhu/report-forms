@@ -1,6 +1,6 @@
-package com.fivefu.core.report.controller;
+package com.example.core.report.controller;
 
-import com.fivefu.base.common.utils.StrUtils;
+import com.example.base.common.utils.StrUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;

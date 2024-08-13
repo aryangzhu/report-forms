@@ -1,8 +1,8 @@
-package com.fivefu.core.report.service.impl;
+package com.example.core.report.service.impl;
 
-import com.fivefu.core.report.entity.TSysLog;
-import com.fivefu.core.report.mapper.TSysLogMapper;
-import com.fivefu.core.report.service.TSysLogService;
+import com.example.core.report.entity.TSysLog;
+import com.example.core.report.mapper.TSysLogMapper;
+import com.example.core.report.service.TSysLogService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

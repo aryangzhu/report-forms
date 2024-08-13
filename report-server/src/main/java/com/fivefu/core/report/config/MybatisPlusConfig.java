@@ -1,4 +1,4 @@
-package com.fivefu.core.report.config;
+package com.example.core.report.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Collections;
 
 @Configuration
-@MapperScan("com.fivefu.core.report.mapper")
+@MapperScan("com.example.core.report.mapper")
 public class MybatisPlusConfig {
 
     @Bean

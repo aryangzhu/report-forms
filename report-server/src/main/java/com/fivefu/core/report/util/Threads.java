@@ -1,4 +1,4 @@
-package com.fivefu.core.report.util;
+package com.example.core.report.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

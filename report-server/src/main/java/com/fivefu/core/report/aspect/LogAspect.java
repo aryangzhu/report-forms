@@ -1,14 +1,14 @@
-package com.fivefu.core.report.aspect;
+package com.example.core.report.aspect;
 import java.time.LocalDateTime;
 
 
-import com.fivefu.core.module.auth.utils.SecurityUtil;
-import com.fivefu.core.module.auth.vo.SysAuthUser;
-import com.fivefu.core.report.anno.LogOption;
-import com.fivefu.core.report.entity.TSysLog;
-import com.fivefu.core.report.service.TSysLogService;
-import com.fivefu.core.report.util.AsyncManager;
-import com.fivefu.core.report.util.RedisQueue;
+import com.example.core.module.auth.utils.SecurityUtil;
+import com.example.core.module.auth.vo.SysAuthUser;
+import com.example.core.report.anno.LogOption;
+import com.example.core.report.entity.TSysLog;
+import com.example.core.report.service.TSysLogService;
+import com.example.core.report.util.AsyncManager;
+import com.example.core.report.util.RedisQueue;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;

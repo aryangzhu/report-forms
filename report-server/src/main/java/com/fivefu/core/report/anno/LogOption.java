@@ -1,9 +1,9 @@
-package com.fivefu.core.report.anno;
+package com.example.core.report.anno;
 
 
-import com.fivefu.core.report.constant.BusinessType;
-import com.fivefu.core.report.constant.OperatorType;
-import com.fivefu.core.report.entity.TInsDatabase;
+import com.example.core.report.constant.BusinessType;
+import com.example.core.report.constant.OperatorType;
+import com.example.core.report.entity.TInsDatabase;
 
 import java.lang.annotation.*;
 

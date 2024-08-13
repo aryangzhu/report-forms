@@ -1,33 +1,33 @@
-package com.fivefu.core.report.service.impl;
+package com.example.core.report.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.fivefu.base.common.utils.StrUtils;
-import com.fivefu.base.common.utils.date.DateUtils;
-import com.fivefu.base.fileupload.minio.services.MinioServices;
-import com.fivefu.base.web.vo.ResultInfo;
-import com.fivefu.core.module.auth.utils.SecurityUtil;
-import com.fivefu.core.module.auth.vo.SysAuthUser;
-import com.fivefu.core.report.config.FileServerConfig;
-import com.fivefu.core.report.constant.TypeEnum;
-import com.fivefu.core.report.entity.TInsDatabase;
-import com.fivefu.core.report.entity.TReportBusiness;
-import com.fivefu.core.report.entity.TReportIns;
-import com.fivefu.core.report.entity.common.DataSourceBeanFactory;
-import com.fivefu.core.report.entity.request.ReqAccessReport;
-import com.fivefu.core.report.entity.request.ReqKeyValue;
-import com.fivefu.core.report.exception.FFNullException;
-import com.fivefu.core.report.mapper.TReportInsMapper;
-import com.fivefu.core.report.service.TInsDatabaseService;
-import com.fivefu.core.report.service.TReportBusinessService;
-import com.fivefu.core.report.service.TReportInsService;
+import com.example.base.common.utils.StrUtils;
+import com.example.base.common.utils.date.DateUtils;
+import com.example.base.fileupload.minio.services.MinioServices;
+import com.example.base.web.vo.ResultInfo;
+import com.example.core.module.auth.utils.SecurityUtil;
+import com.example.core.module.auth.vo.SysAuthUser;
+import com.example.core.report.config.FileServerConfig;
+import com.example.core.report.constant.TypeEnum;
+import com.example.core.report.entity.TInsDatabase;
+import com.example.core.report.entity.TReportBusiness;
+import com.example.core.report.entity.TReportIns;
+import com.example.core.report.entity.common.DataSourceBeanFactory;
+import com.example.core.report.entity.request.ReqAccessReport;
+import com.example.core.report.entity.request.ReqKeyValue;
+import com.example.core.report.exception.FFNullException;
+import com.example.core.report.mapper.TReportInsMapper;
+import com.example.core.report.service.TInsDatabaseService;
+import com.example.core.report.service.TReportBusinessService;
+import com.example.core.report.service.TReportInsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.fivefu.core.report.util.CusHttpUtil;
-import com.fivefu.core.report.util.FileUploadUtil;
-import com.fivefu.module.dictionary.service.DbSysDictService;
+import com.example.core.report.util.CusHttpUtil;
+import com.example.core.report.util.FileUploadUtil;
+import com.example.module.dictionary.service.DbSysDictService;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.HtmlExporter;
@@ -533,7 +533,7 @@ public class TReportInsServiceImpl extends ServiceImpl<TReportInsMapper, TReport
 //        InputStream fileInputStream = new ByteArrayInputStream(outputStream.toByteArray());
 //        String path = fileServerConfig.getPathprefix() + DateUtils.getYear(LocalDateTime.now())+"/"+DateUtils.getMonth(LocalDateTime.now())+"/"
 //                +DateUtils.getDay(LocalDateTime.now())+"/"+DateUtils.getHour(LocalDateTime.now())+"/"+DateUtils.getMinutes(LocalDateTime.now())+"/";
-//        return fivefuFileService.upload(fileName,path,fileInputStream,"originalname");
+//        return exampleFileService.upload(fileName,path,fileInputStream,"originalname");
         return outputStream;
     }
 
@@ -713,7 +713,7 @@ public class TReportInsServiceImpl extends ServiceImpl<TReportInsMapper, TReport
     @Override
     public void accessReportHtml(ReqAccessReport reqAccessReport, HttpServletRequest request, HttpServletResponse response) {
         JasperPrint jasperPrint = getJasperPrint(reqAccessReport);
-        if(com.fivefu.base.common.utils.str.StrUtils.isNull(reqAccessReport.getExportType())){
+        if(com.example.base.common.utils.str.StrUtils.isNull(reqAccessReport.getExportType())){
             reqAccessReport.setExportType("html");
         }
         //根据不同类型，导出各式报表

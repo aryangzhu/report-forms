@@ -1,6 +1,6 @@
-package com.fivefu.core.report.service;
+package com.example.core.report.service;
 
-import com.fivefu.core.report.entity.TSysLog;
+import com.example.core.report.entity.TSysLog;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

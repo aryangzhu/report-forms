@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.fivefu.core</groupId>
-    <artifactId>fivefu-report-forms</artifactId>
+    <groupId>com.example.core</groupId>
+    <artifactId>example-report-forms</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
@@ -35,32 +35,32 @@
         <!--mysql-->
         <mysql-connector-java.version>8.0.27</mysql-connector-java.version>
         <!--auth-->
-        <fivefu-boot-module-auth-server.version>1.2.1-RELEASE</fivefu-boot-module-auth-server.version>
+        <example-boot-module-auth-server.version>1.2.1-RELEASE</example-boot-module-auth-server.version>
         <!--auth-client-->
-        <fivefu-boot-module-auth-token-client.version>1.1.0-RELEASE</fivefu-boot-module-auth-token-client.version>
+        <example-boot-module-auth-token-client.version>1.1.0-RELEASE</example-boot-module-auth-token-client.version>
         <!--fileupload-->
-        <fivefu-boot-base-fileupload-minio-starter>3.0.0-RELEASE</fivefu-boot-base-fileupload-minio-starter>
+        <example-boot-base-fileupload-minio-starter>3.0.0-RELEASE</example-boot-base-fileupload-minio-starter>
         <!--utils-->
-        <fivefu-boot-base-common-utils.version>2.0.1-RELEASE</fivefu-boot-base-common-utils.version>
+        <example-boot-base-common-utils.version>2.0.1-RELEASE</example-boot-base-common-utils.version>
         <!--swagger-->
-        <fivefu-boot-base-web-swagger-starter.version>1.0.0-RELEASE</fivefu-boot-base-web-swagger-starter.version>
+        <example-boot-base-web-swagger-starter.version>1.0.0-RELEASE</example-boot-base-web-swagger-starter.version>
         <!--web-dependencies-->
-        <fivefu-boot-base-web-dependencies.version>1.0.0-RELEASE</fivefu-boot-base-web-dependencies.version>
+        <example-boot-base-web-dependencies.version>1.0.0-RELEASE</example-boot-base-web-dependencies.version>
         <!-- dict 数据字典 -->
-        <fivefu-boot-module-dictionary.version>1.0.0-RELEASE</fivefu-boot-module-dictionary.version>
+        <example-boot-module-dictionary.version>1.0.0-RELEASE</example-boot-module-dictionary.version>
     </properties>
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.fivefu.core</groupId>
-                <artifactId>fivefu-boot-module-auth-server</artifactId>
-                <version>${fivefu-boot-module-auth-server.version}</version>
+                <groupId>com.example.core</groupId>
+                <artifactId>example-boot-module-auth-server</artifactId>
+                <version>${example-boot-module-auth-server.version}</version>
             </dependency>
             <!-- 认证 -->
             <dependency>
-                <groupId>com.fivefu.core</groupId>
-                <artifactId>fivefu-boot-module-auth-token-client</artifactId>
-                <version>${fivefu-boot-module-auth-token-client.version}</version>
+                <groupId>com.example.core</groupId>
+                <artifactId>example-boot-module-auth-token-client</artifactId>
+                <version>${example-boot-module-auth-token-client.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -68,9 +68,9 @@
                 <version>${druid-spring-boot-starter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.fivefu.base</groupId>
-                <artifactId>fivefu-boot-base-web-dependencies</artifactId>
-                <version>${fivefu-boot-base-web-dependencies.version}</version>
+                <groupId>com.example.base</groupId>
+                <artifactId>example-boot-base-web-dependencies</artifactId>
+                <version>${example-boot-base-web-dependencies.version}</version>
             </dependency>
             <!-- mysql -->
             <dependency>
@@ -115,25 +115,25 @@
             </dependency>
             <!-- 文件服务器-->
             <dependency>
-                <artifactId>fivefu-boot-base-fileupload-minio-starter</artifactId>
-                <groupId>com.fivefu.base</groupId>
-                <version>${fivefu-boot-base-fileupload-minio-starter}</version>
+                <artifactId>example-boot-base-fileupload-minio-starter</artifactId>
+                <groupId>com.example.base</groupId>
+                <version>${example-boot-base-fileupload-minio-starter}</version>
             </dependency>
             <dependency>
-                <artifactId>fivefu-boot-base-common-utils</artifactId>
-                <groupId>com.fivefu.base</groupId>
-                <version>${fivefu-boot-base-common-utils.version}</version>
+                <artifactId>example-boot-base-common-utils</artifactId>
+                <groupId>com.example.base</groupId>
+                <version>${example-boot-base-common-utils.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.fivefu.base</groupId>
-                <artifactId>fivefu-boot-base-web-swagger-starter</artifactId>
-                <version>${fivefu-boot-base-web-swagger-starter.version}</version>
+                <groupId>com.example.base</groupId>
+                <artifactId>example-boot-base-web-swagger-starter</artifactId>
+                <version>${example-boot-base-web-swagger-starter.version}</version>
             </dependency>
             <!-- dict 数据字典 -->
             <dependency>
-                <groupId>com.fivefu.base.module</groupId>
-                <artifactId>fivefu-boot-module-dictionary</artifactId>
-                <version>${fivefu-boot-module-dictionary.version}</version>
+                <groupId>com.example.base.module</groupId>
+                <artifactId>example-boot-module-dictionary</artifactId>
+                <version>${example-boot-module-dictionary.version}</version>
             </dependency>
         </dependencies>
 

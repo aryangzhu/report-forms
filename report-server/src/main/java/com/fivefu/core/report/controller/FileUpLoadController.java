@@ -1,8 +1,8 @@
-package com.fivefu.core.report.controller;
+package com.example.core.report.controller;
 
-import com.fivefu.base.fileupload.constant.FileTypeEnum;
-import com.fivefu.base.fileupload.minio.services.MinioServices;
-import com.fivefu.base.web.vo.ResultInfo;
+import com.example.base.fileupload.constant.FileTypeEnum;
+import com.example.base.fileupload.minio.services.MinioServices;
+import com.example.base.web.vo.ResultInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;

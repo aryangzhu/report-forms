@@ -1,4 +1,4 @@
-package com.fivefu.core.report.config;
+package com.example.core.report.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

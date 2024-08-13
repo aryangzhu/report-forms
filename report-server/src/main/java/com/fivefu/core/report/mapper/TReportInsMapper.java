@@ -1,6 +1,6 @@
-package com.fivefu.core.report.mapper;
+package com.example.core.report.mapper;
 
-import com.fivefu.core.report.entity.TReportIns;
+import com.example.core.report.entity.TReportIns;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

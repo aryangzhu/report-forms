@@ -1,7 +1,7 @@
-package com.fivefu.core.report.controller;
+package com.example.core.report.controller;
 
 
-import com.fivefu.base.web.vo.ResultInfo;
+import com.example.base.web.vo.ResultInfo;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
